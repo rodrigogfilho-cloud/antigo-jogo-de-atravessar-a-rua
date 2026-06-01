@@ -48,9 +48,10 @@ while True:
         inimigo.exibir(tela)
     
         ###MOVIMENTAÇÃO DO DAVIZINHO CALABRESO###
-    for x in player:
-        x.andar_player()
-        x.exibir_player(tela)
+        
+    for jogador in player:
+        jogador.andar_player()
+        jogador.exibir_player(tela)
     
 
     #ATUALIZA A TELA
