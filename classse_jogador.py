@@ -3,29 +3,37 @@ import pygame
 class Jogador:
     def __init__ (self):
         self.davi_x = 800
-        self.davi_y = 700
+        self.davi_y = 750
         #carregando imagens 
         self.imagem = pygame.image.load("src/img/DAVI-BRITO.png")
         self.imagem = pygame.transform.scale_by (self.imagem,0.5)
+        #mascara jogador
+        self.mascara = pygame.mask.from_surface(self.imagem)
 
-        self.tecla_pressionada = pygame.key.get_pressed()
+        self.som = pygame.mixer.Sound("src/sound/calabreso.mp3")
 
-    def andar_player(self,tela_do_game):
-        tela_do_game.blit(self.imagem,(self.davi_x,self.davi_y))
-        
+        self.victory = 0
+    def andar(self,tecla_pressionada):
     
-        if self.tecla_pressionada [pygame.K_RIGHT] or self.tecla_pressionada [pygame.K_d]:
+        if tecla_pressionada [pygame.K_RIGHT] or tecla_pressionada [pygame.K_d]:
             if self.davi_x < 1700 - self.imagem.get_width(): # arrumado*
-                self.davi_x += 10
-        if self.tecla_pressionada [ pygame.K_LEFT]or self.tecla_pressionada [pygame.K_a]:     
+                self.davi_x += 8
+        if tecla_pressionada [ pygame.K_LEFT]or tecla_pressionada [pygame.K_a]:     
             if self.davi_x > 0:
-                self.davi_x -= 10
-        if self.tecla_pressionada [pygame.K_UP]or self.tecla_pressionada [pygame.K_w]:
+                self.davi_x -= 8
+        if tecla_pressionada [pygame.K_UP]or tecla_pressionada [pygame.K_w]:
             if self.davi_y > 0 :
-                self.davi_y -= 10
-        if self.tecla_pressionada [pygame.K_DOWN]or self.tecla_pressionada [pygame.K_s]:
+                self.davi_y -= 8
+        if tecla_pressionada [pygame.K_DOWN]or tecla_pressionada [pygame.K_s]:
             if self.davi_y < 900 - self.imagem.get_height():
-                self.davi_y += 10 # arrumado*
+                self.davi_y += 8 # arrumado*
 
-    def exibir_player (self,tela_do_game):
-        tela_do_game.blit(self.imagem,(self.davi_x,self.davi_y))
+    def exibir (self,tela_do_jogo):
+        tela_do_jogo.blit(self.imagem,(self.davi_x,self.davi_y))
+    
+    def voltar(self):
+        self.davi_x = 800
+        self.davi_y = 750
+    
+    def gritar (self):
+        self.som.play()

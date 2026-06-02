@@ -6,7 +6,7 @@ class Viloes:
     def __init__(self, endereco_imagem):
        
         self.imagem = pygame.image.load(endereco_imagem)
-        self.imagem = pygame.transform.scale_by (self.imagem,0.7)
+        self.imagem = pygame.transform.scale_by (self.imagem,0.6)
 
         #posicao  do vilão
         self.pos_x_inimigo= -60
@@ -14,7 +14,10 @@ class Viloes:
         #criando uma posição y aleatoria
         self.ruas = [230, 560, 440,330]
         self.pos_y_inimigo = random.choice(self.ruas)
-        self.velocidade = random.randint(5,30)
+        self.velocidade = random.randint(15,30)
+
+        #criando a mascara p/ a colisão
+        self.mascara = pygame.mask.from_surface(self.imagem)
 
     def andar(self):
         
